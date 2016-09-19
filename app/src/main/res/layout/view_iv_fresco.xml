@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.drawee.view.SimpleDraweeView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_iv_normal"
+     android:layout_width="400dp"
+    android:layout_centerInParent="true"
+    android:scaleType="fitCenter"
+    android:layout_height="400dp">
+
+</com.facebook.drawee.view.SimpleDraweeView>
