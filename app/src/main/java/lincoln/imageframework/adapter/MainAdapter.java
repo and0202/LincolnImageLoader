@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 
 import lincoln.imageframework.fresco.FrescoBaseActivity;
 import lincoln.imageframework.glide.GlideBaseActivity;
+import lincoln.imageframework.lincoln.LincolnImageActivity;
 import lincoln.imageframework.picasso.PicassoBaseActivity;
 import lincoln.imageframework.universalimageloader.ImageLoaderBaseActivity;
 
@@ -18,7 +19,7 @@ import lincoln.imageframework.universalimageloader.ImageLoaderBaseActivity;
  * Created by lincoln on 16/9/19.
  */
 public class MainAdapter extends RecyclerView.Adapter {
-    String[] arrays = new String[]{"ImageLoader", "Picasso","Glide","Fresco"};
+    String[] arrays = new String[]{"ImageLoader", "Picasso","Glide","Fresco","Self"};
     private Context context;
 
     public MainAdapter(Context context) {
@@ -61,6 +62,9 @@ public class MainAdapter extends RecyclerView.Adapter {
                         break;
                     case 3:
                         intent.setClass(context, FrescoBaseActivity.class);
+                        break;
+                    case 4:
+                        intent.setClass(context, LincolnImageActivity.class);
                         break;
                 }
                 context.startActivity(intent);
