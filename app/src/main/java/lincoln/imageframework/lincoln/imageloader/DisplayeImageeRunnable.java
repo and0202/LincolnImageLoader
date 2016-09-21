@@ -1,4 +1,4 @@
-package lincoln.imageframework.lincoln.core.cache.util;
+package lincoln.imageframework.lincoln.imageloader;
 
 import android.graphics.Bitmap;
 import android.os.Looper;
@@ -9,17 +9,17 @@ import android.widget.ImageView;
  * 展示图片类
  * Created by lincoln on 16/9/21.
  */
-public class DisplayerRunnable implements Runnable {
+public class DisplayeImageeRunnable implements Runnable {
     private Bitmap bitmap;
     private int bitmapId = 0;
     private ImageView imageView;
 
-    public DisplayerRunnable(Bitmap bitmap, ImageView imageView) {
+    public DisplayeImageeRunnable(Bitmap bitmap, ImageView imageView) {
         this.bitmap = bitmap;
         this.imageView = imageView;
     }
 
-    public DisplayerRunnable(int bitmapId, ImageView imageView) {
+    public DisplayeImageeRunnable(int bitmapId, ImageView imageView) {
         this.bitmapId = bitmapId;
         this.imageView = imageView;
     }

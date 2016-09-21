@@ -1,4 +1,4 @@
-package lincoln.imageframework.lincoln.core.util;
+package lincoln.imageframework.lincoln.imageloader.util;
 
 import android.content.Intent;
 import android.graphics.Bitmap;

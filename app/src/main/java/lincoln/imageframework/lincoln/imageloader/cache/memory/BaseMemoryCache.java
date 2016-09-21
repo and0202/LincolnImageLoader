@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package lincoln.imageframework.lincoln.core.cache.memory;
+package lincoln.imageframework.lincoln.imageloader.cache.memory;
 
 import android.graphics.Bitmap;
 

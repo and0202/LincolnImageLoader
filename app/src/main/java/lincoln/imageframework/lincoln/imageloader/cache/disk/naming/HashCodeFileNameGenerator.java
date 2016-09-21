@@ -1,4 +1,4 @@
-package lincoln.imageframework.lincoln.core.cache.disk.naming;
+package lincoln.imageframework.lincoln.imageloader.cache.disk.naming;
 
 import com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator;
 

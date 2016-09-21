@@ -1,4 +1,4 @@
-package lincoln.imageframework.lincoln.core.cache.disk;
+package lincoln.imageframework.lincoln.imageloader.cache.disk;
 
 import android.graphics.Bitmap;
 
@@ -10,7 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import lincoln.imageframework.lincoln.core.cache.util.IoUtils;
+import lincoln.imageframework.lincoln.imageloader.cache.util.IoUtils;
 
 /**
  * Created by lincoln on 16/9/21.

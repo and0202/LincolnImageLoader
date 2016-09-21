@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 
 import lincoln.imageframework.fresco.FrescoBaseActivity;
 import lincoln.imageframework.glide.GlideBaseActivity;
-import lincoln.imageframework.lincoln.LincolnImageActivity;
+import lincoln.imageframework.lincoln.demo.LincolnImageActivity;
 import lincoln.imageframework.picasso.PicassoBaseActivity;
 import lincoln.imageframework.universalimageloader.ImageLoaderBaseActivity;
 

@@ -1,4 +1,4 @@
-package lincoln.imageframework.lincoln.core.cache.memory;
+package lincoln.imageframework.lincoln.imageloader.cache.memory;
 
 import android.graphics.Bitmap;
 

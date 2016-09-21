@@ -1,4 +1,4 @@
-package lincoln.imageframework.lincoln.core.downloader;
+package lincoln.imageframework.lincoln.imageloader;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,23 +7,23 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.ImageView;
 
-import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import lincoln.imageframework.R;
-import lincoln.imageframework.lincoln.core.cache.disk.DiskCache;
-import lincoln.imageframework.lincoln.core.cache.disk.DiskCacheConfigFactory;
-import lincoln.imageframework.lincoln.core.cache.memory.BaseMemoryCache;
-import lincoln.imageframework.lincoln.core.cache.memory.impl.WeakMemoryCache;
-import lincoln.imageframework.lincoln.core.cache.util.DisplayerRunnable;
+import lincoln.imageframework.lincoln.imageloader.cache.disk.DiskCache;
+import lincoln.imageframework.lincoln.imageloader.cache.disk.DiskCacheConfigFactory;
+import lincoln.imageframework.lincoln.imageloader.cache.memory.BaseMemoryCache;
+import lincoln.imageframework.lincoln.imageloader.cache.memory.impl.WeakMemoryCache;
+import lincoln.imageframework.lincoln.imageloader.downloader.DownloadCallback;
+import lincoln.imageframework.lincoln.imageloader.downloader.DownloadRunnable;
 
 /**
  * Created by lincoln on 16/9/20.
  */
-public class DownloaderUtil {
+public class ImageLoader {
     private int MAX_POOL_COUNT = 10;
-    private static DownloaderUtil downloadUtil;
+    private static ImageLoader downloadUtil;
     private static Context mContext;
 
     private ExecutorService pool;
@@ -31,15 +31,15 @@ public class DownloaderUtil {
     private DiskCache diskCache;
     private Handler handler = new Handler(Looper.getMainLooper());
 
-    private DownloaderUtil() {
+    private ImageLoader() {
         pool = Executors.newFixedThreadPool(MAX_POOL_COUNT);
         memoryCache = new WeakMemoryCache();
         diskCache = DiskCacheConfigFactory.createDefaultDiskCache();
     }
 
-    public static DownloaderUtil getInstance(Context context) {
+    public static ImageLoader getInstance(Context context) {
         if (downloadUtil == null) {
-            downloadUtil = new DownloaderUtil();
+            downloadUtil = new ImageLoader();
             mContext = context;
         }
         return downloadUtil;
@@ -57,7 +57,7 @@ public class DownloaderUtil {
         //从本地磁盘读取
 
         //从网络读取
-        startRunnable(new DownloadRunnable(url, callback, diskCache));
+        startRunnable(new DownloadRunnable(url, callback, diskCache,memoryCache));
     }
 
 
@@ -66,7 +66,7 @@ public class DownloaderUtil {
             @Override
             public void onFailed() {
                 Log.d("lincoln", "onfailed");
-                handler.post(new DisplayerRunnable(R.mipmap.ic_launcher, imageView));
+                handler.post(new DisplayeImageeRunnable(R.mipmap.ic_launcher, imageView));
             }
 
             @Override
@@ -77,21 +77,19 @@ public class DownloaderUtil {
                 }
                 Log.d("lincoln", " onSuccess:");
 
-                DisplayerRunnable displayerRunnable = new DisplayerRunnable(bitmap, imageView);
+                DisplayeImageeRunnable displayerRunnable = new DisplayeImageeRunnable(bitmap, imageView);
                 handler.post(displayerRunnable);
 
-                try {
-                    memoryCache.put(url, bitmap);
-                    boolean reuslt = diskCache.save(url, bitmap);
-                    Log.d("lincoln", "disk cache save " + reuslt);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         });
     }
 
     private void startRunnable(DownloadRunnable runnable) {
         pool.submit(runnable);
+    }
+
+
+    public void clearMemoryCache(){
+        memoryCache.clear();
     }
 }

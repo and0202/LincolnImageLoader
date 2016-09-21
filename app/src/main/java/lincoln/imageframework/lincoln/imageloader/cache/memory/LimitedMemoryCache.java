@@ -1,4 +1,4 @@
-package lincoln.imageframework.lincoln.core.cache.memory;
+package lincoln.imageframework.lincoln.imageloader.cache.memory;
 
 /**
  * Created by lincoln on 16/9/21.

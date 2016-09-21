@@ -1,15 +1,17 @@
-package lincoln.imageframework.lincoln.core.downloader;
+package lincoln.imageframework.lincoln.imageloader.downloader;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import lincoln.imageframework.lincoln.core.cache.disk.DiskCache;
+import lincoln.imageframework.lincoln.imageloader.cache.disk.DiskCache;
+import lincoln.imageframework.lincoln.imageloader.cache.memory.BaseMemoryCache;
 
 /**
  * Created by lincoln on 16/9/20.
@@ -18,11 +20,13 @@ public class DownloadRunnable implements Runnable {
     public String urlString ;
     public DownloadCallback callback;
     private DiskCache diskCache;
+    private BaseMemoryCache memoryCache;
 
-    public DownloadRunnable(String urlString, DownloadCallback callback, DiskCache diskCache) {
+    public DownloadRunnable(String urlString, DownloadCallback callback, DiskCache diskCache, BaseMemoryCache memoryCache) {
         this.callback = callback;
         this.urlString = urlString;
         this.diskCache = diskCache;
+        this.memoryCache = memoryCache;
     }
 
     @Override
@@ -42,7 +46,6 @@ public class DownloadRunnable implements Runnable {
                     Log.d("lincoln", "image from disk cache: ");
                     callback.onSuccess(bitmapDisk);
                     result = true;
-
                 }
             }
 
@@ -53,7 +56,7 @@ public class DownloadRunnable implements Runnable {
         return result;
     }
 
-    private void loadFromHttp(){
+    private void loadFromHttp( ){
         try {
             Log.d("lincoln","image from http");
             URL url  = new URL(urlString);
@@ -61,6 +64,14 @@ public class DownloadRunnable implements Runnable {
 
             InputStream in = connection.getInputStream();
             Bitmap bitmap = BitmapFactory.decodeStream(in);
+
+            try {
+                memoryCache.put(urlString, bitmap);
+                boolean reuslt = diskCache.save(urlString, bitmap);
+                Log.d("lincoln", "disk cache save " + reuslt);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             if (bitmap != null){
                 callback.onSuccess(bitmap);
             }else {

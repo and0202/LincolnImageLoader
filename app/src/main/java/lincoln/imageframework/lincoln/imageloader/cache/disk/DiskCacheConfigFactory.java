@@ -1,4 +1,4 @@
-package lincoln.imageframework.lincoln.core.cache.disk;
+package lincoln.imageframework.lincoln.imageloader.cache.disk;
 
 import android.os.Environment;
 import android.util.Log;
@@ -7,7 +7,7 @@ import com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator;
 
 import java.io.File;
 
-import lincoln.imageframework.lincoln.core.cache.disk.naming.HashCodeFileNameGenerator;
+import lincoln.imageframework.lincoln.imageloader.cache.disk.naming.HashCodeFileNameGenerator;
 
 /**
  * Created by lincoln on 16/9/21.
