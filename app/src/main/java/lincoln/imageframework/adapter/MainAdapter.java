@@ -3,7 +3,6 @@ package lincoln.imageframework.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -35,7 +34,7 @@ public class MainAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.d("lincoln", "NormalHolder");
+//        Log.d("lincoln", "NormalHolder");
         Button button = new Button(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         button.setLayoutParams(params);

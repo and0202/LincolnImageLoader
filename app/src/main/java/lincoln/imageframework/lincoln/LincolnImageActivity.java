@@ -1,15 +1,12 @@
 package lincoln.imageframework.lincoln;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lincoln.imageframework.R;
 import lincoln.imageframework.activity.BaseActivity;
-import lincoln.imageframework.lincoln.core.downloader.DownloadCallback;
 import lincoln.imageframework.lincoln.core.downloader.DownloaderUtil;
 
 public class LincolnImageActivity extends BaseActivity {
@@ -28,20 +25,8 @@ public class LincolnImageActivity extends BaseActivity {
     }
 
     private void init() {
-        DownloaderUtil.downloadImage(url, new DownloadCallback() {
-            @Override
-            public void onSuccess(Bitmap bitmap) {
-                Log.d("lincoln","onSuccess");
-                viewIvNormal.setImageBitmap(bitmap);
-            }
-
-            @Override
-            public void onFailed() {
-                Log.d("lincoln","onFailed");
-                viewIvNormal.setImageResource(R.mipmap.ic_launcher);
-            }
-        });
-
+        DownloaderUtil downloadUtil = DownloaderUtil.getInstance(this);
+        downloadUtil.displayImage(viewIvNormal,url);
     }
 
 
