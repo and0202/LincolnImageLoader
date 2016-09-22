@@ -66,7 +66,7 @@ public class ImageLoader {
             @Override
             public void onFailed() {
                 Log.d("lincoln", "onfailed");
-                handler.post(new DisplayeImageeRunnable(R.mipmap.ic_launcher, imageView));
+                handler.post(new DisplayeImageeRunnable(R.drawable.loading_error, imageView));
             }
 
             @Override

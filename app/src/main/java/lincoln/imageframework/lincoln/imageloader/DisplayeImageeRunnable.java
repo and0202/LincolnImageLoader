@@ -5,13 +5,15 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.ImageView;
 
+import lincoln.imageframework.R;
+
 /**
  * 展示图片类
  * Created by lincoln on 16/9/21.
  */
 public class DisplayeImageeRunnable implements Runnable {
     private Bitmap bitmap;
-    private int bitmapId = 0;
+    private int bitmapId = R.drawable.loading_error;
     private ImageView imageView;
 
     public DisplayeImageeRunnable(Bitmap bitmap, ImageView imageView) {
@@ -35,7 +37,7 @@ public class DisplayeImageeRunnable implements Runnable {
             }
 
             if (bitmapId != 0) {
-                imageView.setImageResource(bitmapId);
+//                imageView.setImageResource(bitmapId);
             }
         } else {
             Log.d("lincoln", "displayerrunnable run Not In MainUiThread ");
