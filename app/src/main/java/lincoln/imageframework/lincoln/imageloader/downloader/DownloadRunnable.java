@@ -44,6 +44,9 @@ public class DownloadRunnable implements Runnable {
                 Bitmap bitmapDisk = BitmapFactory.decodeStream(new FileInputStream(diskCache.get(urlString)));
                 if (bitmapDisk != null) {
                     Log.d("lincoln", "image from disk cache: ");
+                    boolean saveMemoryResult = memoryCache.put(urlString, bitmapDisk);
+                    Log.d("lincoln", "memory cache save:"+saveMemoryResult);
+
                     callback.onSuccess(bitmapDisk);
                     result = true;
                 }
@@ -66,9 +69,9 @@ public class DownloadRunnable implements Runnable {
             Bitmap bitmap = BitmapFactory.decodeStream(in);
 
             try {
-                memoryCache.put(urlString, bitmap);
+                boolean saveMemoryResult = memoryCache.put(urlString, bitmap);
                 boolean reuslt = diskCache.save(urlString, bitmap);
-                Log.d("lincoln", "disk cache save " + reuslt);
+                Log.d("lincoln", "memory cache save:"+saveMemoryResult+" disk cache save " + reuslt);
             } catch (IOException e) {
                 e.printStackTrace();
             }

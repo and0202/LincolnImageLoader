@@ -54,19 +54,21 @@ public class ImageLoader {
             callback.onSuccess(bitmapMemory);
             return;
         }
-        //从本地磁盘读取
+        imageView.setImageResource(R.drawable.loading_place);
 
-        //从网络读取
+        //从硬盘读取，没有则网络读取
         startRunnable(new DownloadRunnable(url, callback, diskCache,memoryCache));
     }
 
 
     public void displayImage(final ImageView imageView, final String url) {
+        //解决错位、闪烁的问题
+        imageView.setTag(url);
         displayImage(imageView, url, new DownloadCallback() {
             @Override
             public void onFailed() {
                 Log.d("lincoln", "onfailed");
-                handler.post(new DisplayeImageeRunnable(R.drawable.loading_error, imageView));
+                handler.post(new DisplayeImageeRunnable(R.drawable.loading_error, imageView,url));
             }
 
             @Override
@@ -77,7 +79,7 @@ public class ImageLoader {
                 }
                 Log.d("lincoln", " onSuccess:");
 
-                DisplayeImageeRunnable displayerRunnable = new DisplayeImageeRunnable(bitmap, imageView);
+                DisplayeImageeRunnable displayerRunnable = new DisplayeImageeRunnable(bitmap, imageView,url);
                 handler.post(displayerRunnable);
 
             }
