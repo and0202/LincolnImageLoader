@@ -9,7 +9,7 @@ import lincoln.imageframework.R;
 import lincoln.imageframework.lincoln.imageloader.util.StringUtil;
 
 /**
- * 展示图片类
+ * 在UI主线程中展示图片类
  * Created by lincoln on 16/9/21.
  */
 public class DisplayeImageeRunnable implements Runnable {
@@ -45,6 +45,8 @@ public class DisplayeImageeRunnable implements Runnable {
 
             if (bitmapId != 0) {
 //                imageView.setImageResource(bitmapId);
+            }else{
+//                imageView.setImageBitmap();
             }
         } else {
             Log.d("lincoln", "displayerrunnable run Not In MainUiThread ");

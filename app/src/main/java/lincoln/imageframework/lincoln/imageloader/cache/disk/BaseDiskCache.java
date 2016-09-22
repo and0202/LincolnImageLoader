@@ -8,6 +8,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 
 import lincoln.imageframework.lincoln.imageloader.cache.util.IoUtils;
@@ -76,6 +77,28 @@ public class BaseDiskCache  implements DiskCache{
 //        bitmap.recycle();
         return savedSuccessfully;
     }
+
+    @Override
+    public boolean save(String imageUri, InputStream imageStream, com.nostra13.universalimageloader.utils.IoUtils.CopyListener listener) throws IOException {
+        File imageFile = getFile(imageUri);
+        File tmpFile = new File(imageFile.getAbsolutePath() + TEMP_IMAGE_POSTFIX);
+        boolean loaded = false;
+        try {
+            OutputStream os = new BufferedOutputStream(new FileOutputStream(tmpFile), bufferSize);
+            try {
+                loaded = com.nostra13.universalimageloader.utils.IoUtils.copyStream(imageStream, os, listener, bufferSize);
+            } finally {
+                com.nostra13.universalimageloader.utils.IoUtils.closeSilently(os);
+            }
+        } finally {
+            if (loaded && !tmpFile.renameTo(imageFile)) {
+                loaded = false;
+            }
+            if (!loaded) {
+                tmpFile.delete();
+            }
+        }
+        return loaded;    }
 
     @Override
     public boolean remove(String imageUrl) {

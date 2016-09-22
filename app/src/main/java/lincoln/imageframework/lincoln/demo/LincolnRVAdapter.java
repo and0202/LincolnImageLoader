@@ -2,6 +2,7 @@ package lincoln.imageframework.lincoln.demo;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lincoln.imageframework.R;
-import lincoln.imageframework.lincoln.imageloader.ImageLoader;
 
 /**
  * Created by lincoln on 16/9/21.
@@ -41,12 +41,28 @@ public class LincolnRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        Log.d("lincoln","count:"+getItemCount()+" position:"+position);
         NormalHolder normalHolder = (NormalHolder)holder;
         String url = list.get(position);
-        ImageLoader.getInstance(context).displayImage(normalHolder.viewIvNormal,url);
+
+        //Fresco
+
+        //imageloader
+//        UniversalLoaderUtil.initImageLoader(context);
+//        UniversalLoaderUtil.load(context,normalHolder.viewIvNormal,url);
+
+        //picasso
+//        PicassoLoaderUtil.load(context,normalHolder.viewIvNormal,url);
+
+        //Glide
+//        GlideLoaderUtil.load(context,normalHolder.viewIvNormal,url);
+
+        //lincoln
+        LincolnLoaderUtil.load(context,normalHolder.viewIvNormal,url);
+
     }
 
-    static class NormalHolder extends RecyclerView.ViewHolder {
+    public static class NormalHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.view_iv_normal)
         ImageView viewIvNormal;
         public NormalHolder(View itemView) {

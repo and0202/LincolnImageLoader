@@ -8,4 +8,5 @@ import android.graphics.Bitmap;
 public interface DownloadCallback {
     void onSuccess(Bitmap bitmap);
     void onFailed();
+    void showHolder();
 }

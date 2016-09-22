@@ -13,8 +13,8 @@ import java.util.concurrent.Executors;
 import lincoln.imageframework.R;
 import lincoln.imageframework.lincoln.imageloader.cache.disk.DiskCache;
 import lincoln.imageframework.lincoln.imageloader.cache.disk.DiskCacheConfigFactory;
-import lincoln.imageframework.lincoln.imageloader.cache.memory.BaseMemoryCache;
-import lincoln.imageframework.lincoln.imageloader.cache.memory.impl.WeakMemoryCache;
+import lincoln.imageframework.lincoln.imageloader.cache.memory.MemoryCache;
+import lincoln.imageframework.lincoln.imageloader.cache.memory.impl.LruMemoryCache;
 import lincoln.imageframework.lincoln.imageloader.downloader.DownloadCallback;
 import lincoln.imageframework.lincoln.imageloader.downloader.DownloadRunnable;
 
@@ -27,13 +27,15 @@ public class ImageLoader {
     private static Context mContext;
 
     private ExecutorService pool;
-    private BaseMemoryCache memoryCache;
+    private MemoryCache memoryCache;
     private DiskCache diskCache;
     private Handler handler = new Handler(Looper.getMainLooper());
 
     private ImageLoader() {
         pool = Executors.newFixedThreadPool(MAX_POOL_COUNT);
-        memoryCache = new WeakMemoryCache();
+        int maxMemory = (int) Runtime.getRuntime().maxMemory();
+        Log.d("lincoln","memory:"+maxMemory);
+        memoryCache = new LruMemoryCache(maxMemory/8);
         diskCache = DiskCacheConfigFactory.createDefaultDiskCache();
     }
 
@@ -55,9 +57,8 @@ public class ImageLoader {
             return;
         }
         imageView.setImageResource(R.drawable.loading_place);
-
         //从硬盘读取，没有则网络读取
-        startRunnable(new DownloadRunnable(url, callback, diskCache,memoryCache));
+        startRunnable(new DownloadRunnable(imageView,url, callback, diskCache,memoryCache));
     }
 
 
@@ -77,11 +78,17 @@ public class ImageLoader {
                     Log.d("lincoln", "onSuccess run bitmap is null or recycler ");
                     return;
                 }
-                Log.d("lincoln", " onSuccess:");
+                Log.d("lincoln", " onSuccess:"+url);
 
                 DisplayeImageeRunnable displayerRunnable = new DisplayeImageeRunnable(bitmap, imageView,url);
                 handler.post(displayerRunnable);
 
+            }
+
+            @Override
+            public void showHolder() {
+                DisplayeImageeRunnable displayerRunnable = new DisplayeImageeRunnable(R.drawable.loading_place, imageView,url);
+                handler.post(displayerRunnable);
             }
         });
     }
