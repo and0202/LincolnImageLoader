@@ -15,6 +15,7 @@ import lincoln.imageframework.lincoln.imageloader.cache.disk.DiskCache;
 import lincoln.imageframework.lincoln.imageloader.cache.disk.DiskCacheConfigFactory;
 import lincoln.imageframework.lincoln.imageloader.cache.memory.MemoryCache;
 import lincoln.imageframework.lincoln.imageloader.cache.memory.impl.LruMemoryCache;
+import lincoln.imageframework.lincoln.imageloader.config.DisplayConfigFactory;
 import lincoln.imageframework.lincoln.imageloader.downloader.DownloadCallback;
 import lincoln.imageframework.lincoln.imageloader.downloader.DownloadRunnable;
 
@@ -30,6 +31,7 @@ public class ImageLoader {
     private MemoryCache memoryCache;
     private DiskCache diskCache;
     private Handler handler = new Handler(Looper.getMainLooper());
+    private DisplayImageConfig displayImageConfig;
 
     private ImageLoader() {
         pool = Executors.newFixedThreadPool(MAX_POOL_COUNT);
@@ -37,6 +39,9 @@ public class ImageLoader {
         Log.d("lincoln","memory:"+maxMemory);
         memoryCache = new LruMemoryCache(maxMemory/8);
         diskCache = DiskCacheConfigFactory.createDefaultDiskCache();
+        if (displayImageConfig == null){
+            displayImageConfig = DisplayConfigFactory.getDefaultDisplayImageConfig();
+        }
     }
 
     public static ImageLoader getInstance(Context context) {
@@ -58,7 +63,7 @@ public class ImageLoader {
         }
         imageView.setImageResource(R.drawable.loading_place);
         //从硬盘读取，没有则网络读取
-        startRunnable(new DownloadRunnable(imageView,url, callback, diskCache,memoryCache));
+        startRunnable(new DownloadRunnable(imageView,displayImageConfig,url, callback, diskCache,memoryCache));
     }
 
 
@@ -101,4 +106,10 @@ public class ImageLoader {
     public void clearMemoryCache(){
         memoryCache.clear();
     }
+
+    public void setImageWidth(int width,int height){
+        DisplayImageConfig config  = new DisplayImageConfig(width,height);
+        this.displayImageConfig = config;
+    }
+
 }

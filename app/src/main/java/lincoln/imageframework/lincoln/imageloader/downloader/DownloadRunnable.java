@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import lincoln.imageframework.lincoln.imageloader.DisplayImageConfig;
 import lincoln.imageframework.lincoln.imageloader.cache.disk.DiskCache;
 import lincoln.imageframework.lincoln.imageloader.cache.memory.MemoryCache;
 import lincoln.imageframework.lincoln.imageloader.util.BitmapUtil;
@@ -26,13 +27,15 @@ public class DownloadRunnable implements Runnable {
     private DiskCache diskCache;
     private MemoryCache memoryCache;
     private ImageView imageView;
+    private DisplayImageConfig config;
 
-    public DownloadRunnable(ImageView imageView, String urlString, DownloadCallback callback, DiskCache diskCache, MemoryCache memoryCache) {
+    public DownloadRunnable(ImageView imageView, DisplayImageConfig displayImageConfig, String urlString, DownloadCallback callback, DiskCache diskCache, MemoryCache memoryCache) {
         this.callback = callback;
         this.urlString = urlString;
         this.diskCache = diskCache;
         this.memoryCache = memoryCache;
         this.imageView = imageView;
+        this.config = displayImageConfig;
     }
 
     @Override
@@ -57,7 +60,6 @@ public class DownloadRunnable implements Runnable {
                     Log.d("lincoln", "image from disk cache: ");
                     boolean saveMemoryResult = memoryCache.put(urlString, bitmapDisk);
                     Log.d("lincoln", "memory cache save:"+saveMemoryResult);
-
                     callback.onSuccess(bitmapDisk);
                     result = true;
                 }
@@ -87,7 +89,7 @@ public class DownloadRunnable implements Runnable {
             diskCache.save(urlString,in,null);
             File bitmapFile = diskCache.get(urlString);
             String bitmapPath = bitmapFile.getAbsolutePath();
-            Bitmap bitmap = BitmapUtil.getSmallBitmap(bitmapPath,200,200);
+            Bitmap bitmap = BitmapUtil.getSmallBitmap(bitmapPath,config.width,config.height);
             if (bitmap != null){
                 callback.onSuccess(bitmap);
             }else {
@@ -99,6 +101,7 @@ public class DownloadRunnable implements Runnable {
                 Log.d("lincoln", "memory cache save:"+saveMemoryResult+" disk cache save " + reuslt);
             } catch (IOException e) {
                 e.printStackTrace();
+                callback.onFailed();
             }
 
 

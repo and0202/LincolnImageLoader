@@ -1,4 +1,4 @@
-package lincoln.imageframework.adapter;
+package lincoln.imageframework.main.adapter;
 
 import android.content.Context;
 import android.content.Intent;

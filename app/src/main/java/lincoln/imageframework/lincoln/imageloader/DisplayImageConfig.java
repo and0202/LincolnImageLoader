@@ -7,8 +7,9 @@ public class DisplayImageConfig {
     public int width;
     public int height;
 
-    public DisplayImageConfig(int height, int width) {
+    public DisplayImageConfig( int width,int height) {
         this.height = height;
         this.width = width;
     }
+
 }

@@ -1,4 +1,4 @@
-package lincoln.imageframework.activity;
+package lincoln.imageframework.main.activity;
 
 import android.support.v7.app.AppCompatActivity;
 
@@ -10,18 +10,6 @@ public class BaseActivity extends AppCompatActivity {
     public String url = "https://lh6.googleusercontent.com/-55osAWw3x0Q/URquUtcFr5I/AAAAAAAAAbs/rWlj1RUKrYI/s1024/A%252520Photographer.jpg";
 
     public String[] arrays = new String[]{
-//            "http://img4.imgtn.bdimg.com/it/u=509842840,1686280266&fm=21&gp=0.jpg",
-//            "http://img3.imgtn.bdimg.com/it/u=1335731291,3110280902&fm=206&gp=0.jpg",
-//            "http://himg2.huanqiu.com/attachment2010/2016/0219/07/55/20160219075528118.jpg",
-//            "http://img15.3lian.com/2015/f2/124/d/54.jpg",
-//            "http://cdn.duitang.com/uploads/blog/201507/17/20150717163850_nAj3H.thumb.700_0.jpeg",
-//            "http://img4.duitang.com/uploads/blog/201507/17/20150717163809_XtcaQ.thumb.700_0.jpeg",
-//            "http://img0.imgtn.bdimg.com/it/u=3857717375,1043381621&fm=21&gp=0.jpg",
-//            "http://img3.yxlady.com/mr/UploadFiles_9207/20150721/20150721163226994.jpg",
-//            "http://img4.cache.netease.com/photo/0026/2013-08-20/96NGEV474CJ80026.jpg",
-//            "http://www.361810.com/uploads/allimg/160104/095J16129-0.jpg",
-//            "http://img.faxingw.cn/201603/18.jpg",
-//            "http://img15.3lian.com/2015/f2/124/d/51.jpg",
             "http://img.my.csdn.net/uploads/201309/01/1378037235_3453.jpg",
             "http://img.my.csdn.net/uploads/201309/01/1378037235_7476.jpg",
             "http://img.my.csdn.net/uploads/201309/01/1378037235_9280.jpg",
@@ -74,6 +62,18 @@ public class BaseActivity extends AppCompatActivity {
             "http://img.my.csdn.net/uploads/201308/31/1377949441_5454.jpg",
             "http://img.my.csdn.net/uploads/201308/31/1377949454_6367.jpg",
             "http://img.my.csdn.net/uploads/201308/31/1377949442_4562.jpg",
+            "http://img4.imgtn.bdimg.com/it/u=509842840,1686280266&fm=21&gp=0.jpg",
+            "http://img3.imgtn.bdimg.com/it/u=1335731291,3110280902&fm=206&gp=0.jpg",
+            "http://himg2.huanqiu.com/attachment2010/2016/0219/07/55/20160219075528118.jpg",
+            "http://img15.3lian.com/2015/f2/124/d/54.jpg",
+            "http://cdn.duitang.com/uploads/blog/201507/17/20150717163850_nAj3H.thumb.700_0.jpeg",
+            "http://img4.duitang.com/uploads/blog/201507/17/20150717163809_XtcaQ.thumb.700_0.jpeg",
+            "http://img0.imgtn.bdimg.com/it/u=3857717375,1043381621&fm=21&gp=0.jpg",
+            "http://img3.yxlady.com/mr/UploadFiles_9207/20150721/20150721163226994.jpg",
+            "http://img4.cache.netease.com/photo/0026/2013-08-20/96NGEV474CJ80026.jpg",
+            "http://www.361810.com/uploads/allimg/160104/095J16129-0.jpg",
+            "http://img.faxingw.cn/201603/18.jpg",
+            "http://img15.3lian.com/2015/f2/124/d/51.jpg",
             "https://lh6.googleusercontent.com/-55osAWw3x0Q/URquUtcFr5I/AAAAAAAAAbs/rWlj1RUKrYI/s1024/A%252520Photographer.jpg",
             "https://lh4.googleusercontent.com/--dq8niRp7W4/URquVgmXvgI/AAAAAAAAAbs/-gnuLQfNnBA/s1024/A%252520Song%252520of%252520Ice%252520and%252520Fire.jpg",
             "https://lh5.googleusercontent.com/-7qZeDtRKFKc/URquWZT1gOI/AAAAAAAAAbs/hqWgteyNXsg/s1024/Another%252520Rockaway%252520Sunset.jpg",

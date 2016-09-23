@@ -11,7 +11,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lincoln.imageframework.R;
-import lincoln.imageframework.activity.BaseActivity;
+import lincoln.imageframework.main.activity.BaseActivity;
 import lincoln.imageframework.lincoln.imageloader.ImageLoader;
 
 public class LincolnImageActivity extends BaseActivity {
@@ -41,8 +41,6 @@ public class LincolnImageActivity extends BaseActivity {
         lincolnRecyclerview.setLayoutManager(layoutManager);
         adapter = new LincolnRVAdapter(this, list);
         lincolnRecyclerview.setAdapter(adapter);
-//        ImageLoader downloadUtil = ImageLoader.getInstance(this);
-//        downloadUtil.displayImage(viewIvNormal, url);
     }
 
     @Override

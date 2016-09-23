@@ -1,4 +1,4 @@
-package lincoln.imageframework.activity;
+package lincoln.imageframework.main.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,7 +18,7 @@ import android.view.View;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lincoln.imageframework.R;
-import lincoln.imageframework.adapter.MainAdapter;
+import lincoln.imageframework.main.adapter.MainAdapter;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

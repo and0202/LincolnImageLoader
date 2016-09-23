@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lincoln.imageframework.R;
-import lincoln.imageframework.activity.BaseActivity;
+import lincoln.imageframework.main.activity.BaseActivity;
 
 public class ImageLoaderBaseActivity extends BaseActivity {
     @BindView(R.id.view_iv_normal)

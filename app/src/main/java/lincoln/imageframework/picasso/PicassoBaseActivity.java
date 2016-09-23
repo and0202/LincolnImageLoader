@@ -9,7 +9,7 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lincoln.imageframework.R;
-import lincoln.imageframework.activity.BaseActivity;
+import lincoln.imageframework.main.activity.BaseActivity;
 
 /**
  * Created by lincoln on 16/9/19.
