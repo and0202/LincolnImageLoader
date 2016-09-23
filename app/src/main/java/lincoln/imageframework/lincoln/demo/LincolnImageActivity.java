@@ -33,7 +33,7 @@ public class LincolnImageActivity extends BaseActivity {
     }
 
     private void init() {
-        for (int i =0;i<5;i++){
+        for (int i =0;i<2;i++){
             list.addAll(Arrays.asList(arrays));
         }
 
