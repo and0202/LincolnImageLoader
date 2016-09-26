@@ -1,4 +1,4 @@
-package lincoln.imageframework.lincoln.demo;
+package lincoln.imageframework.admaster;
 
 import android.content.Context;
 import android.widget.ImageView;
@@ -12,6 +12,7 @@ public class LoaderUtil {
     private static final  long maxSize = 20*1024*1024;
     public static void load(Context context, ImageView imageView, String url) {
         ImageLoader.getInstance(context,"lincoln",maxSize).displayImage(imageView,url);
+        ImageLoader.
     }
 
 }

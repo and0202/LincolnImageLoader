@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:gravity="center"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
+    android:layout_margin="10dp"
     >
 
     <include layout="@layout/view_iv_normal"/>

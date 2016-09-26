@@ -36,7 +36,7 @@ public class ImageLoader {
     private int loading_error = 0;
 
 
-    private ImageLoader(Context context,String fileName,long maxSize) {
+    private ImageLoader(Context context, String fileName, long maxSize) {
         pool = Executors.newFixedThreadPool(MAX_POOL_COUNT);
         int maxMemory = (int) Runtime.getRuntime().maxMemory();
         Log.d("lincoln","memory:"+maxMemory);
@@ -47,7 +47,7 @@ public class ImageLoader {
         }
     }
 
-    public static ImageLoader getInstance(Context context,String fileName,long maxSize) {
+    public static ImageLoader getInstance(Context context, String fileName, long maxSize) {
         if (downloadUtil == null) {
             downloadUtil = new ImageLoader(context,fileName,maxSize);
             mContext = context;
@@ -114,5 +114,37 @@ public class ImageLoader {
         DisplayImageConfig config  = new DisplayImageConfig(width,height);
         this.displayImageConfig = config;
     }
+
+
+//    //TODO New Code
+//
+//    static volatile ImageLoader singleton = null;
+//
+//    public static ImageLoader whit(Context context){
+//        if (context == null){
+//            throw new IllegalArgumentException("Contex == null");
+//        }
+//
+//        if (singleton ==null){
+//            synchronized (ImageLoader.class){
+//                if (singleton == null){
+//                    singleton = new
+//                }
+//            }
+//        }
+//        return singleton;
+//    }
+//
+//
+//    public static class Builder{
+//        private final Context context;
+//
+//        public Builder(Context context){
+//            if (context == null){
+//                throw new IllegalArgumentException("Context must not be null");
+//            }
+//
+//        }
+//    }
 
 }

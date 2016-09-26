@@ -1,7 +1,7 @@
 package lincoln.imageframework.admaster;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class AdmasterActivity extends BaseActivity {
     private void init() {
         list.addAll(Arrays.asList(arrays));
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        GridLayoutManager layoutManager = new GridLayoutManager(this,2);
         lincolnRecyclerview.setLayoutManager(layoutManager);
         adapter = new RVAdapter(this, list);
         lincolnRecyclerview.setAdapter(adapter);

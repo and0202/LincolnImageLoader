@@ -14,7 +14,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lincoln.imageframework.R;
-import lincoln.imageframework.lincoln.demo.LoaderUtil;
 
 /**
  * Created by lincoln on 16/9/21.
@@ -42,30 +41,18 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        Log.d("lincoln","count:"+getItemCount()+" position:"+position);
-        NormalHolder normalHolder = (NormalHolder)holder;
+        Log.d("lincoln", "count:" + getItemCount() + " position:" + position);
+        NormalHolder normalHolder = (NormalHolder) holder;
         String url = list.get(position);
 
-        //Fresco
-
-        //imageloader
-//        UniversalLoaderUtil.initImageLoader(context);
-//        UniversalLoaderUtil.load(context,normalHolder.viewIvNormal,url);
-
-        //picasso
-//        PicassoLoaderUtil.load(context,normalHolder.viewIvNormal,url);
-
-        //Glide
-//        GlideLoaderUtil.load(context,normalHolder.viewIvNormal,url);
-
         //lincoln
-        LoaderUtil.load(context,normalHolder.viewIvNormal,url);
-
+        LoaderUtil.load(context, normalHolder.viewIvNormal, url);
     }
 
     public static class NormalHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.view_iv_normal)
         ImageView viewIvNormal;
+
         public NormalHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
