@@ -39,19 +39,29 @@ public class ImageLoader {
     private ImageLoader(Context context, String fileName, long maxSize) {
         pool = Executors.newFixedThreadPool(MAX_POOL_COUNT);
         int maxMemory = (int) Runtime.getRuntime().maxMemory();
-        Log.d("lincoln","memory:"+maxMemory);
-        memoryCache = new LruMemoryCache(maxMemory/8);
-        diskCache = DiskCacheConfigFactory.createDefaultDiskCache(context,fileName,maxSize);
-        if (displayImageConfig == null){
+        Log.d("lincoln", "memory:" + maxMemory);
+        memoryCache = new LruMemoryCache(maxMemory / 8);
+        diskCache = DiskCacheConfigFactory.createDefaultDiskCache(context, fileName, maxSize);
+        if (displayImageConfig == null) {
             displayImageConfig = DisplayConfigFactory.getDefaultDisplayImageConfig();
         }
     }
 
     public static ImageLoader getInstance(Context context, String fileName, long maxSize) {
         if (downloadUtil == null) {
-            downloadUtil = new ImageLoader(context,fileName,maxSize);
+            downloadUtil = new ImageLoader(context, fileName, maxSize);
             mContext = context;
         }
+        return downloadUtil;
+    }
+
+    public ImageLoader placeHolder(int loading_place) {
+        this.loading_place = loading_place;
+        return downloadUtil;
+    }
+
+    public ImageLoader error(int loading_error) {
+        this.loading_error = loading_error;
         return downloadUtil;
     }
 
@@ -66,7 +76,7 @@ public class ImageLoader {
         }
         imageView.setImageResource(loading_place);
         //从硬盘读取，没有则网络读取
-        startRunnable(new DownloadRunnable(imageView,displayImageConfig,url, callback, diskCache,memoryCache));
+        startRunnable(new DownloadRunnable(imageView, displayImageConfig, url, callback, diskCache, memoryCache));
     }
 
 
@@ -77,7 +87,7 @@ public class ImageLoader {
             @Override
             public void onFailed() {
                 Log.d("lincoln", "onfailed");
-                handler.post(new DisplayeImageeRunnable(loading_error, imageView,url));
+                handler.post(new DisplayeImageeRunnable(loading_error, imageView, url));
             }
 
             @Override
@@ -86,16 +96,16 @@ public class ImageLoader {
                     Log.d("lincoln", "onSuccess run bitmap is null or recycler ");
                     return;
                 }
-                Log.d("lincoln", " onSuccess:"+url);
+                Log.d("lincoln", " onSuccess:" + url);
 
-                DisplayeImageeRunnable displayerRunnable = new DisplayeImageeRunnable(bitmap, imageView,url);
+                DisplayeImageeRunnable displayerRunnable = new DisplayeImageeRunnable(bitmap, imageView, url);
                 handler.post(displayerRunnable);
 
             }
 
             @Override
             public void showHolder() {
-                DisplayeImageeRunnable displayerRunnable = new DisplayeImageeRunnable(loading_place, imageView,url);
+                DisplayeImageeRunnable displayerRunnable = new DisplayeImageeRunnable(loading_place, imageView, url);
                 handler.post(displayerRunnable);
             }
         });
@@ -106,45 +116,14 @@ public class ImageLoader {
     }
 
 
-    public void clearMemoryCache(){
+    public void clearMemoryCache() {
         memoryCache.clear();
     }
 
-    public void setImageWidth(int width,int height){
-        DisplayImageConfig config  = new DisplayImageConfig(width,height);
+    public void setImageWidth(int width, int height) {
+        DisplayImageConfig config = new DisplayImageConfig(width, height);
         this.displayImageConfig = config;
     }
 
-
-//    //TODO New Code
-//
-//    static volatile ImageLoader singleton = null;
-//
-//    public static ImageLoader whit(Context context){
-//        if (context == null){
-//            throw new IllegalArgumentException("Contex == null");
-//        }
-//
-//        if (singleton ==null){
-//            synchronized (ImageLoader.class){
-//                if (singleton == null){
-//                    singleton = new
-//                }
-//            }
-//        }
-//        return singleton;
-//    }
-//
-//
-//    public static class Builder{
-//        private final Context context;
-//
-//        public Builder(Context context){
-//            if (context == null){
-//                throw new IllegalArgumentException("Context must not be null");
-//            }
-//
-//        }
-//    }
 
 }
