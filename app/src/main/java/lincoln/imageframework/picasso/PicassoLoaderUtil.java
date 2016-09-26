@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Picasso;
 
 import lincoln.imageframework.R;
-import lincoln.imageframework.lincoln.imageloader.util.StringUtil;
+import com.admaster.imageloader.util.StringUtil;
 
 /**
  * Created by lincoln on 16/9/22.

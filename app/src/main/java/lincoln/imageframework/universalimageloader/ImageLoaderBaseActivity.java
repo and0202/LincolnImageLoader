@@ -25,8 +25,8 @@ public class ImageLoaderBaseActivity extends BaseActivity {
 
 
     public void initData() {
-        UniversalLoaderUtil.initImageLoader(this);
-        UniversalLoaderUtil.load(this,viewIvNormal,url);
+//        UniversalLoaderUtil.initImageLoader(this);
+//        UniversalLoaderUtil.load(this,viewIvNormal,url);
     }
 
 

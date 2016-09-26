@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import lincoln.imageframework.admaster.AdmasterActivity;
 import lincoln.imageframework.fresco.FrescoBaseActivity;
 import lincoln.imageframework.glide.GlideBaseActivity;
-import lincoln.imageframework.lincoln.demo.LincolnImageActivity;
 import lincoln.imageframework.picasso.PicassoBaseActivity;
 import lincoln.imageframework.universalimageloader.ImageLoaderBaseActivity;
 
@@ -63,7 +63,7 @@ public class MainAdapter extends RecyclerView.Adapter {
                         intent.setClass(context, FrescoBaseActivity.class);
                         break;
                     case 4:
-                        intent.setClass(context, LincolnImageActivity.class);
+                        intent.setClass(context, AdmasterActivity.class);
                         break;
                 }
                 context.startActivity(intent);
