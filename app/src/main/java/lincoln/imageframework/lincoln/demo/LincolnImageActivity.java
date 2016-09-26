@@ -12,7 +12,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import lincoln.imageframework.R;
 import lincoln.imageframework.main.activity.BaseActivity;
-import lincoln.imageframework.lincoln.imageloader.ImageLoader;
 
 public class LincolnImageActivity extends BaseActivity {
 
@@ -46,6 +45,6 @@ public class LincolnImageActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        ImageLoader.getInstance(this).clearMemoryCache();
+//        ImageLoader.getInstance(this).clearMemoryCache();
     }
 }

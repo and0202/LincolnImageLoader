@@ -32,21 +32,22 @@ public class ImageLoader {
     private DiskCache diskCache;
     private Handler handler = new Handler(Looper.getMainLooper());
     private DisplayImageConfig displayImageConfig;
+    private String fileName = "lincoln";
 
-    private ImageLoader() {
+    private ImageLoader(Context context,String fileName,long maxSize) {
         pool = Executors.newFixedThreadPool(MAX_POOL_COUNT);
         int maxMemory = (int) Runtime.getRuntime().maxMemory();
         Log.d("lincoln","memory:"+maxMemory);
         memoryCache = new LruMemoryCache(maxMemory/8);
-        diskCache = DiskCacheConfigFactory.createDefaultDiskCache();
+        diskCache = DiskCacheConfigFactory.createDefaultDiskCache(context,fileName,maxSize);
         if (displayImageConfig == null){
             displayImageConfig = DisplayConfigFactory.getDefaultDisplayImageConfig();
         }
     }
 
-    public static ImageLoader getInstance(Context context) {
+    public static ImageLoader getInstance(Context context,String fileName,long maxSize) {
         if (downloadUtil == null) {
-            downloadUtil = new ImageLoader();
+            downloadUtil = new ImageLoader(context,fileName,maxSize);
             mContext = context;
         }
         return downloadUtil;

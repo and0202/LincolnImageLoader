@@ -118,4 +118,22 @@ public class MainActivity extends AppCompatActivity
         mainRecyclerview.setLayoutManager(new LinearLayoutManager(this));
         mainRecyclerview.setAdapter(mAdapter);
     }
+
+    private void startAppThread() {
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                while (true) {
+//                    String packageTop = Package.getForegroundPackageName(MainActivity.this);
+//                    LogUtil.d("package:" + packageTop);
+//                    try {
+//                        Thread.sleep(5 * 1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        });
+//        thread.start();
+    }
 }
