@@ -1,4 +1,4 @@
-package com.admaster.imageloader.picasso;
+package com.admaster.imageloader.api;
 
 import android.content.Context;
 import android.net.Uri;
@@ -61,4 +61,6 @@ public class Picasso {
             return new Picasso(context);
         }
     }
+
+
 }

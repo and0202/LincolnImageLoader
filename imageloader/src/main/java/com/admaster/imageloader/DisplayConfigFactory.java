@@ -1,4 +1,4 @@
-package com.admaster.imageloader.config;
+package com.admaster.imageloader;
 
 import com.admaster.imageloader.DisplayImageConfig;
 
@@ -12,8 +12,11 @@ public class DisplayConfigFactory {
      */
     private static final int IMAGE_WIDTH = 400;
     private static final int IMAGE_HEIGHT = 400;
-    public static DisplayImageConfig getDefaultDisplayImageConfig(){
-        DisplayImageConfig displayImageConfig = new DisplayImageConfig(IMAGE_WIDTH,IMAGE_HEIGHT);
+
+    public static DisplayImageConfig getDefaultDisplayImageConfig() {
+        DisplayImageConfig displayImageConfig = new DisplayImageConfig(IMAGE_WIDTH, IMAGE_HEIGHT);
         return displayImageConfig;
     }
+
+
 }

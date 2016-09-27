@@ -1,4 +1,4 @@
-package com.admaster.imageloader.picasso;
+package com.admaster.imageloader.api;
 
 import android.content.Context;
 import android.net.Uri;
@@ -14,31 +14,32 @@ public class RequestCreator {
     private int load_placeholder = 0;
     private int load_error = 0;
     private String fileName = null;
-    private long disk_cache_max_size =0 ;
+    private long disk_cache_max_size = 0;
     private Uri uri;
     private Context context;
+    private int width, height;
 
     //Default Value
-    private long DEFAULT_DISK_CACHE_MAX_SIZE = 20*1024*1024;//磁盘缓存最大空间
-    private String DEFAULT_FILENAME="admaster";
+    private long DEFAULT_DISK_CACHE_MAX_SIZE = 50 * 1024 * 1024;//磁盘缓存最大空间
+    private String DEFAULT_FILENAME = "admaster";
 
-    RequestCreator(Context  context, Uri uri, int resourceId) {
+    RequestCreator(Context context, Uri uri, int resourceId) {
         this.uri = uri;
         this.context = context;
     }
 
     public void into(ImageView imageView) {
-        if (fileName == null){
+        if (fileName == null) {
             fileName = DEFAULT_FILENAME;
         }
-        if (disk_cache_max_size == 0){
+        if (disk_cache_max_size == 0) {
             disk_cache_max_size = DEFAULT_DISK_CACHE_MAX_SIZE;
         }
 
         ImageLoader.getInstance(context, "lincoln", disk_cache_max_size)
                 .placeHolder(load_placeholder)
                 .error(load_error)
-                .displayImage(imageView, uri.getPath());
+                .displayImage(imageView, uri.toString());
     }
 
     public RequestCreator placeholder(@DrawableRes int placeholderResId) {
@@ -52,13 +53,19 @@ public class RequestCreator {
         return this;
     }
 
-    public RequestCreator fileName(String fileName){
+    public RequestCreator fileName(String fileName) {
         this.fileName = fileName;
         return this;
     }
 
-    public RequestCreator diskMaxSize(long MByte){
-        this.disk_cache_max_size = MByte*1024*1024;
+    public RequestCreator diskMaxSize(long MByte) {
+        this.disk_cache_max_size = MByte * 1024 * 1024;
+        return this;
+    }
+
+    public RequestCreator resize(int widht, int height) {
+        this.width = widht;
+        this.height = height;
         return this;
     }
 

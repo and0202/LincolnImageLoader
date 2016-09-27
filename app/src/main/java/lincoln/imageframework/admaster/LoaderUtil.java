@@ -3,7 +3,7 @@ package lincoln.imageframework.admaster;
 import android.content.Context;
 import android.widget.ImageView;
 
-import com.admaster.imageloader.picasso.Picasso;
+import com.admaster.imageloader.api.Picasso;
 import com.admaster.imageloader.util.StringUtil;
 
 import lincoln.imageframework.R;
