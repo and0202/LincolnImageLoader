@@ -9,16 +9,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import lincoln.imageframework.admaster.AdmasterActivity;
-import lincoln.imageframework.fresco.FrescoBaseActivity;
-import lincoln.imageframework.glide.GlideBaseActivity;
-import lincoln.imageframework.picasso.PicassoBaseActivity;
-import lincoln.imageframework.universalimageloader.ImageLoaderBaseActivity;
 
 /**
  * Created by lincoln on 16/9/19.
  */
 public class MainAdapter extends RecyclerView.Adapter {
-    String[] arrays = new String[]{"ImageLoader", "Picasso","Glide","Fresco","Self"};
+    String[] arrays = new String[]{"Self"};
     private Context context;
 
     public MainAdapter(Context context) {
@@ -51,18 +47,6 @@ public class MainAdapter extends RecyclerView.Adapter {
                 Intent intent = new Intent();
                 switch (position) {
                     case 0:
-                        intent.setClass(context, ImageLoaderBaseActivity.class);
-                        break;
-                    case 1:
-                        intent.setClass(context, PicassoBaseActivity.class);
-                        break;
-                    case 2:
-                        intent.setClass(context, GlideBaseActivity.class);
-                        break;
-                    case 3:
-                        intent.setClass(context, FrescoBaseActivity.class);
-                        break;
-                    case 4:
                         intent.setClass(context, AdmasterActivity.class);
                         break;
                 }

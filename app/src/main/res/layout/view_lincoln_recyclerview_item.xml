@@ -7,4 +7,5 @@
     >
 
     <include layout="@layout/view_iv_normal"/>
+
 </LinearLayout>
