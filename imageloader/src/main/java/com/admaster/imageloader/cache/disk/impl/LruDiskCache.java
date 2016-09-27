@@ -28,15 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-/**
- * Disk cache based on "Least-Recently Used" principle. Adapter pattern, adapts
- * {@link com.nostra13.universalimageloader.cache.disc.impl.ext.DiskLruCache DiskLruCache} to
- * {@link com.nostra13.universalimageloader.cache.disc.DiskCache DiskCache}
- *
- * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
- * @see FileNameGenerator
- * @since 1.9.2
- */
+
 public class LruDiskCache implements DiskCache {
 	/** {@value */
 	public static final int DEFAULT_BUFFER_SIZE = 32 * 1024; // 32 Kb

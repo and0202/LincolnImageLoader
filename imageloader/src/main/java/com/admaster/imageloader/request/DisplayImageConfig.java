@@ -1,4 +1,4 @@
-package com.admaster.imageloader;
+package com.admaster.imageloader.request;
 
 /**
  * Created by lincoln on 16/9/21.
@@ -12,4 +12,7 @@ public class DisplayImageConfig {
         this.width = width;
     }
 
+    public  String getEndName() {
+        return width+"_"+height;
+    }
 }

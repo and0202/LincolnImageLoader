@@ -3,7 +3,7 @@ package lincoln.imageframework.admaster;
 import android.content.Context;
 import android.widget.ImageView;
 
-import com.admaster.imageloader.api.Picasso;
+import com.admaster.imageloader.Picasso;
 import com.admaster.imageloader.util.StringUtil;
 
 import lincoln.imageframework.R;
@@ -16,7 +16,7 @@ public class LoaderUtil {
     public static void load(Context context, ImageView imageView, String url) {
 //        ImageLoader.getInstance(context,"lincoln",maxSize).displayImage(imageView,url);
         if (StringUtil.isUseable(url)){
-            Picasso.whith(context)
+            Picasso.with(context)
                     .load(url)
                     .placeholder(R.drawable.loading_place)
                     .error(R.drawable.loading_error)

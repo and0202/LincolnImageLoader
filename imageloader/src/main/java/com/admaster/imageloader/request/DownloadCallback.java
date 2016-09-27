@@ -1,4 +1,4 @@
-package com.admaster.imageloader.downloader;
+package com.admaster.imageloader.request;
 
 import android.graphics.Bitmap;
 

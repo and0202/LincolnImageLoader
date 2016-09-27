@@ -1,6 +1,4 @@
-package com.admaster.imageloader;
-
-import com.admaster.imageloader.DisplayImageConfig;
+package com.admaster.imageloader.request;
 
 /**
  * Created by lincoln on 16/9/23.

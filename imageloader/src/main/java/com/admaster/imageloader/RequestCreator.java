@@ -1,11 +1,11 @@
-package com.admaster.imageloader.api;
+package com.admaster.imageloader;
 
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 
-import com.admaster.imageloader.ImageLoader;
+import com.admaster.imageloader.request.ImageLoader;
 
 /**
  * Created by lincoln on 16/9/26.

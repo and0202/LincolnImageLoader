@@ -1,10 +1,11 @@
-package com.admaster.imageloader.api;
+package com.admaster.imageloader;
 
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
 /**
+ * 入口类
  * Created by lincoln on 16/9/26.
  */
 public class Picasso {
@@ -13,6 +14,7 @@ public class Picasso {
     private Picasso(Context context) {
         this.context = context.getApplicationContext();
     }
+
     public RequestCreator load(@Nullable String uri){
         if (uri == null) {
             return new RequestCreator(context, Uri.parse(uri), 0);
@@ -30,7 +32,7 @@ public class Picasso {
 
     static volatile Picasso singleton = null;
 
-    public static Picasso whith(Context context){
+    public static Picasso with(Context context){
         if (context == null){
             throw new IllegalArgumentException("Contex == null");
         }
@@ -46,21 +48,21 @@ public class Picasso {
     }
 
 
-    public static class Builder{
-        private  Context context;
-
-        public Builder(Context context){
-            if (context == null){
-                throw new IllegalArgumentException("Context must not be null");
-            }
-            this.context = context.getApplicationContext();
-        }
-
-        public Picasso build() {
-            Context context = this.context;
-            return new Picasso(context);
-        }
-    }
+//    public static class Builder{
+//        private  Context context;
+//
+//        public Builder(Context context){
+//            if (context == null){
+//                throw new IllegalArgumentException("Context must not be null");
+//            }
+//            this.context = context.getApplicationContext();
+//        }
+//
+//        public Picasso build() {
+//            Context context = this.context;
+//            return new Picasso(context);
+//        }
+//    }
 
 
 }

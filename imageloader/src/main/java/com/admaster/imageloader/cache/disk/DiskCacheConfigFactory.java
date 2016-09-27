@@ -17,7 +17,7 @@ import java.io.IOException;
 public class DiskCacheConfigFactory {
     private static final String FilePath = Environment.getExternalStorageDirectory().getPath();
 
-    private static final long maxCache =  20*1024*1024;
+    private static final long DEFAULT_MAX_DISK_CACHE =  100*1024*1024;
 
     public static FileNameGenerator createFileNameGenerator(){
         return new HashCodeFileNameGenerator();
@@ -43,7 +43,7 @@ public class DiskCacheConfigFactory {
             lruDiskCache= new LruDiskCache(file,new HashCodeFileNameGenerator(),maxCache);
             Log.d("lincoln","create  lruDiskCache file success");
 
-            return lruDiskCache;
+//            return lruDiskCache;
         } catch (IOException e) {
             e.printStackTrace();
             Log.d("lincoln","create  lruDiskCache file error");

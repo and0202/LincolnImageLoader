@@ -43,6 +43,6 @@ public class AdmasterActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-//        Picasso.whith(this).
+//        Picasso.with(this).
     }
 }

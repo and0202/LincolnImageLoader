@@ -1,4 +1,4 @@
-package com.admaster.imageloader;
+package com.admaster.imageloader.request;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,8 +11,6 @@ import com.admaster.imageloader.cache.disk.DiskCache;
 import com.admaster.imageloader.cache.disk.DiskCacheConfigFactory;
 import com.admaster.imageloader.cache.memory.MemoryCache;
 import com.admaster.imageloader.cache.memory.impl.LruMemoryCache;
-import com.admaster.imageloader.config.DisplayConfigFactory;
-import com.admaster.imageloader.downloader.DownloadCallback;
 import com.admaster.imageloader.downloader.DownloadRunnable;
 
 import java.util.concurrent.ExecutorService;
@@ -42,9 +40,7 @@ public class ImageLoader {
         Log.d("lincoln", "memory:" + maxMemory);
         memoryCache = new LruMemoryCache(maxMemory / 8);
         diskCache = DiskCacheConfigFactory.createDefaultDiskCache(context, fileName, maxSize);
-        if (displayImageConfig == null) {
-            displayImageConfig = DisplayConfigFactory.getDefaultDisplayImageConfig();
-        }
+
     }
 
     public static ImageLoader getInstance(Context context, String fileName, long maxSize) {
@@ -67,8 +63,13 @@ public class ImageLoader {
 
 
     public void displayImage(ImageView imageView, String url, DownloadCallback callback) {
+        if (displayImageConfig == null) {
+            int width = imageView.getLayoutParams().width;
+            int height = imageView.getLayoutParams().height;
+            displayImageConfig = new DisplayImageConfig(width,height);
+        }
         //从内存缓存中读取
-        Bitmap bitmapMemory = memoryCache.get(url);
+        Bitmap bitmapMemory = memoryCache.get(url+displayImageConfig.getEndName());
         if (bitmapMemory != null) {
             Log.d("lincoln", "image from memory cache ");
             callback.onSuccess(bitmapMemory);

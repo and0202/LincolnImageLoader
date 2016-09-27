@@ -1,4 +1,4 @@
-package com.admaster.imageloader;
+package com.admaster.imageloader.request;
 
 import android.graphics.Bitmap;
 import android.os.Looper;
@@ -43,9 +43,8 @@ public class DisplayeImageeRunnable implements Runnable {
             }
 
             if (bitmapId != 0) {
-//                imageView.setImageResource(bitmapId);
+                imageView.setImageResource(bitmapId);
             }else{
-//                imageView.setImageBitmap();
             }
         } else {
             Log.d("lincoln", "displayerrunnable run Not In MainUiThread ");

@@ -18,10 +18,12 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by lincoln on 16/9/20.
@@ -249,4 +251,31 @@ public class BitmapUtil {
     public byte[] compressBitmapQuiklySmallTo(String filePath, int maxLenth) {
         return compressBitmapSmallTo(filePath, 480, 800, maxLenth);
     }
+
+    //TODO
+    public static Bitmap getSmallBitmap(InputStream inputStream, int reqWidth, int reqHeight) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try {
+            byte[] buffer = new byte[1024];
+            int len;
+            while ((len = inputStream.read(buffer)) > -1 ) {
+                baos.write(buffer, 0, len);
+            }
+            baos.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        InputStream stream1 = new ByteArrayInputStream(baos.toByteArray());
+        InputStream stream2 = new ByteArrayInputStream(baos.toByteArray());
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeStream(stream1,null,options);
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeStream(stream2,null,options);
+    }
+
+
 }
